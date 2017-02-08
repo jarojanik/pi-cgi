@@ -37,34 +37,34 @@ hb_memowrit("/tmp/QUERY_STRING.txt",getEnv("QUERY_STRING"))
 do case
 case getEnv("QUERY_STRING")=="LED=zap"
 //hb_processRun( xProg + ' ' + cParam, , @cStdOut, ,.F. )
-hb_processRun( 'sudo gpio write 25 1', , , ,lDetach )
+hb_processRun( 'gpio write 25 1', , , ,lDetach )
 
 case getEnv("QUERY_STRING")=="LED=vyp"
-hb_processRun( 'sudo gpio write 25 0', , , ,lDetach )
+hb_processRun( 'gpio write 25 0', , , ,lDetach )
 
 case getEnv("QUERY_STRING")=="r1=zap"
-hb_processRun( 'sudo gpio write 21 1', , , ,lDetach )
+hb_processRun( 'gpio write 21 1', , , ,lDetach )
 
 case getEnv("QUERY_STRING")=="r1=vyp"
-hb_processRun( 'sudo gpio write 21 0', , , ,lDetach )
+hb_processRun( 'gpio write 21 0', , , ,lDetach )
 
 case getEnv("QUERY_STRING")=="r2=zap"
-hb_processRun( 'sudo gpio write 22 1', , , ,lDetach )
+hb_processRun( 'gpio write 22 1', , , ,lDetach )
 
 case getEnv("QUERY_STRING")=="r2=vyp"
-hb_processRun( 'sudo gpio write 22 0', , , ,lDetach )
+hb_processRun( 'gpio write 22 0', , , ,lDetach )
 
 case getEnv("QUERY_STRING")=="r3=zap"
-hb_processRun( 'sudo gpio write 23 1', , , ,lDetach )
+hb_processRun( 'gpio write 23 1', , , ,lDetach )
 
 case getEnv("QUERY_STRING")=="r3=vyp"
-hb_processRun( 'sudo gpio write 23 0', , , ,lDetach )
+hb_processRun( 'gpio write 23 0', , , ,lDetach )
 
 case getEnv("QUERY_STRING")=="r4=zap"
-hb_processRun( 'sudo gpio write 24 1', , , ,lDetach )
+hb_processRun( 'gpio write 24 1', , , ,lDetach )
 
 case getEnv("QUERY_STRING")=="r4=vyp"
-hb_processRun( 'sudo gpio write 24 0', , , ,lDetach )
+hb_processRun( 'gpio write 24 0', , , ,lDetach )
 
 // ajax responses
 //--------------- teploty ---------------
@@ -187,8 +187,8 @@ cOut+=cgiHeader() //cgi header
 cOut+=cBody
 
 outStd(cOut)
-hb_memowrit("/tmp/jaroCGI.out",cOut)
-! whoami >/tmp/whoami.txt
+*hb_memowrit("/tmp/jaroCGI.out",cOut)
+*! whoami >/tmp/whoami.txt
 return nil
 
 //-----------------------------------------------------------------------------//
@@ -406,43 +406,43 @@ local cStdOut:=''
 hb_processRun( '/home/pi/adafruit_python_dht/examples/AdafruitDHT.py 11 17', , @cStdOut, ,.F. )
 //hb_processRun( 'sudo /home/pi/adafruit_python_dht/examples/AdafruitDHT.py 11 17', , @cStdOut, ,.F. )
 //hb_processRun( 'sudo -u www-data /home/pi/adafruit_python_dht/examples/AdafruitDHT.py 11 17', , @cStdOut, ,.F. )
-hb_memowrit("~/aaa", cStdOut )
-hb_memowrit("/tmp/aaajjj", cStdOut )
+*hb_memowrit("~/aaa", cStdOut )
+*hb_memowrit("/tmp/aaajjj", cStdOut )
 return cStdOut
 
 //---------------------------------------------------------------------------//
 function readLED() 
 local cStdOut:=''
 //hb_processRun( xProg + ' ' + cParam, , @cStdOut, ,.F. )
-hb_processRun( 'sudo gpio read 25', , @cStdOut, ,.F. )
+hb_processRun( 'gpio read 25', , @cStdOut, ,.F. )
 return cStdOut
 //---------------------------------------------------------------------------//
 
 function readR1()
 local cStdOut:=''
 //hb_processRun( xProg + ' ' + cParam, , @cStdOut, ,.F. )
-hb_processRun( 'sudo gpio read 21', , @cStdOut, ,.F. )
+hb_processRun( 'gpio read 21', , @cStdOut, ,.F. )
 return cStdOut
 //---------------------------------------------------------------------------//
 
 function readR2()
 local cStdOut:=''
 //hb_processRun( xProg + ' ' + cParam, , @cStdOut, ,.F. )
-hb_processRun( 'sudo gpio read 22', , @cStdOut, ,.F. )
+hb_processRun( 'gpio read 22', , @cStdOut, ,.F. )
 return cStdOut
 
 //---------------------------------------------------------------------------//
 function readR3()
 local cStdOut:=''
 //hb_processRun( xProg + ' ' + cParam, , @cStdOut, ,.F. )
-hb_processRun( 'sudo gpio read 23', , @cStdOut, ,.F. )
+hb_processRun( 'gpio read 23', , @cStdOut, ,.F. )
 return cStdOut
 //---------------------------------------------------------------------------//
 
 function readR4()
 local cStdOut:=''
 //hb_processRun( xProg + ' ' + cParam, , @cStdOut, ,.F. )
-hb_processRun( 'sudo gpio read 24', , @cStdOut, ,.F. )
+hb_processRun( 'gpio read 24', , @cStdOut, ,.F. )
 return cStdOut
 
 //---------------------------------------------------------------------------//
