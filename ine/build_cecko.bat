@@ -1,0 +1,1 @@
+gcc cecko.c -ocecko

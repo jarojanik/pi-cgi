@@ -1,0 +1,45 @@
+<TABLE WIDTH=270 BORDER=1 CELLPADDING=2 CELLSPACING=3>
+        <COL WIDTH=191>
+        <COL WIDTH=221>
+        <TR>
+                <TD COLSPAN=3 WIDTH=358 VALIGN=TOP>
+                        <P ALIGN=CENTER STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT SIZE=5><B>Namerané teploty</B></FONT></FONT></P>
+                </TD>
+        </TR>
+        <TR VALIGN=TOP>
+                <TD WIDTH=221>
+                        <P STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT SIZE=3 STYLE="font-size: 13pt"><B>Teplota1</B></FONT></FONT></P>
+                </TD>
+                <TD WIDTH=132>
+                        <P ALIGN=RIGHT STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT SIZE=3 STYLE="font-size: 13pt"><B>###001###
+                        </B></FONT></FONT></P>
+                </TD>
+        </TR>
+        <TR VALIGN=TOP>
+                <TD WIDTH=221>
+                        <P STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT SIZE=3 STYLE="font-size: 13pt"><B>Teplota2</B></FONT></FONT></P>
+                </TD>
+                <TD WIDTH=132>
+                        <P ALIGN=RIGHT STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT SIZE=3 STYLE="font-size: 13pt"><B>###002###
+                        </B></FONT></FONT></P>
+                </TD>
+        </TR>
+        <TR VALIGN=TOP>
+                <TD WIDTH=221>
+                        <P STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT SIZE=3 STYLE="font-size: 13pt"><B>Teplota3</B></FONT></FONT></P>
+                </TD>
+                <TD WIDTH=132>
+                        <P ALIGN=RIGHT STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT SIZE=3 STYLE="font-size: 13pt"><B>###003###
+                        </B></FONT></FONT></P>
+                </TD>
+        </TR>
+        <TR VALIGN=TOP>
+                <TD WIDTH=221>
+                        <P STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT SIZE=3 STYLE="font-size: 13pt"><B>Teplota4</B></FONT></FONT></P>
+                </TD>
+                <TD WIDTH=132>
+                        <P ALIGN=RIGHT STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT SIZE=3 STYLE="font-size: 13pt"><B>###004###
+                        </B></FONT></FONT></P>
+                </TD>
+        </TR>
+</TABLE>

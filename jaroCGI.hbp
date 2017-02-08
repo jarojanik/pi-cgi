@@ -1,0 +1,11 @@
+hbct.hbc
+
+-p
+-w3 -es2 -gc3
+
+# velmi dolezite !!!!
+-gtcgi
+
+jaroCGI.prg
+
+

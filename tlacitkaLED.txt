@@ -1,0 +1,9 @@
+
+<form action="/cgi-bin/jaroCGI?LED=zap">
+    <input type="submit" formmethod="post" value="LED zapni">
+</form>
+
+<form action="/cgi-bin/jaroCGI?LED=vyp">
+    <input type="submit" formmethod="post" value="LED vypni">
+</form>
+

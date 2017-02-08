@@ -1,0 +1,63 @@
+<table border="1" width="50%">
+    <tr>
+        <TD COLSPAN=4 WIDTH=358 VALIGN=TOP>
+           <P ALIGN=CENTER STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT SIZE=5><B>Namerané teploty</B></FONT></FONT></P>
+        </TD>
+   </tr>
+    <tr>
+        <td>###11###</td>
+        <td>###12###</td>
+        <td>###13###</td>
+        <td>###14###</td>
+    </tr>
+    <tr>
+        <td>###21###</td>
+        <td>###22###</td>
+        <td>###23###</td>
+        <td>###24###</td>
+    </tr>
+    <tr>
+        <td>###31###</td>
+        <td>###32###</td>
+        <td>###33###</td>
+        <td>###34###</td>
+    </tr>
+    <tr>
+        <td>###41###</td>
+        <td>###42###</td>
+        <td>###43###</td>
+        <td>###44###</td>
+    </tr>
+    <tr>
+        <td>###51###</td>
+        <td>###52###</td>
+        <td>###53###</td>
+        <td>###54###</td>
+    </tr>
+    <tr>
+        <td>###61###</td>
+        <td>###62###</td>
+        <td>###63###</td>
+        <td>###64###</td>
+    </tr>
+    <tr>
+        <td>###71###</td>
+        <td>###72###</td>
+        <td>###73###</td>
+        <td>###74###</td>
+    </tr>
+    <tr>
+        <td>###81###</td>
+        <td>###82###</td>
+        <td>###83###</td>
+        <td>###84###</td>
+    </tr>
+    <tr>
+        <td>###91###</td>
+        <td>###92###</td>
+        <td>###93###</td>
+        <td>###94###</td>
+    </tr>
+</table>
+XX###99###YY
+<a href="/dokuwiki/index.php">Linka na dokuwikiPI3 z velka_tabulka.txt</a>

@@ -1,0 +1,310 @@
+#define CRLF chr(13)+chr(10)
+#define LF chr(10)
+
+ANNOUNCE HB_GT_SYS
+//REQUEST HB_GT_WIN_DEFAULT
+REQUEST HB_GT_CGI
+
+/*
+Variable Name	Description
+---------------------------
+CONTENT_TYPE	The data type of the content. Used when the client is sending attached content to the server. For example file upload etc.
+CONTENT_LENGTH	The length of the query information. It's available only for POST requests
+HTTP_COOKIE	Return the set cookies in the form of key & value pair.
+HTTP_USER_AGENT	The User-Agent request-header field contains information about the user agent originating the request. Its name of the web browser.
+PATH_INFO	The path for the CGI script.
+QUERY_STRING	The URL-encoded information that is sent with GET method request.
+REMOTE_ADDR	The IP address of the remote host making the request. This can be useful for logging or for authentication purpose.
+REMOTE_HOST	The fully qualified name of the host making the request. If this information is not available then REMOTE_ADDR can be used to get IR address.
+REQUEST_METHOD	The method used to make the request. The most common methods are GET and POST.
+SCRIPT_FILENAME	The full path to the CGI script.
+SCRIPT_NAME	The name of the CGI script.
+SERVER_NAME	The server's hostname or IP Address
+SERVER_SOFTWARE	The name and version of the software the server is running.
+*/
+
+//-----------------------------------------------------------------------------//
+function main()
+local cHeader :='' 	//header
+local cContentType :=''	//header part
+local cExpires :=''	//header part
+local cLocation :=''	//header part
+local cLastModified :=''//header part
+local cContentLength:=''//header part
+local cSetCookie:=''	//header part
+
+local cBody:=''		//telo cgi dat
+local cOut:=''		//vystupny retazec
+
+//header parts
+
+cContentType:='text/html; charset=windows-1250' //A MIME string defining the format of the file being returned. Example is Content-type:text/html
+*cContentType:='text/html' //A MIME string defining the format of the file being returned. Example is Content-type:text/html
+cExpire:='01 Jan 1998 12:00:00 GMT'+"<br>" //The date the information becomes invalid. This should be used by the browser to decide when a page needs to be refreshed. A valid date string should be in the format 01 Jan 1998 12:00:00 GMT.
+cLocation:='' //The URL that should be returned instead of the URL requested. You can use this filed to redirect a request to any file.
+cLastModified :='' //The date of last modification of the resource.
+cContentLength:=''//The length, in bytes, of the data being returned. The browser uses this value to report the estimated download time for a file.
+cSetCookie:=''	//Set the cookie passed through the string
+
+//build header
+cHeader+=iif(!empty(cContentType),'Content-type: '+cContentType+CRLF+"<br>",'')
+cHeader+=iif(!empty(cExpire),     'Expires: '+cExpire+"<br>",'')
+cHeader+=iif(!empty(cLocation),   'Location: '+cLocation+"<br>",'')
+cHeader+=iif(!empty(cLastModified),   'Last-modified:  '+cLastModified+"<br>",'')
+cHeader+=iif(!empty(cContentLength),'Content-length: '+cContentLength+"<br>",'')
+cHeader+=iif(!empty(cSetCookie),  'Set-Cookie: '+cSetCookie+"<br>",'')
+cHeader+=CRLF+CRLF
+
+*? hb_memoread("/sys/bus/w1/devices/28-000007268829/w1_slave")
+
+/*
+(NOTE: HB_openProcess() and HB_closeProcess() where later renamed to HB_ProcessOpen() and HB_ProcessClose().
+
+These are the current syntax:
+
+HB_ProcessOpen( <cCommand>, [ @<cStdIn>, @<cStdOut>, @<cStdErr>, <lDetach>, @<nProcId> ] ) -> <hProcess>
+
+HB_ProcessValue( <hProcess>, <lWait> ) -> <nResult>
+
+HB_ProcessClose( <hPorcess>, <lGentle> ) -> <lResult>
+
+HB_ProcessRun( <cCommand>, [ <cStdIn> ], [ @<cStdOut> ], [ @<cStdErr> ], [ <lDetach> ] ) -> <nResult>
+
+*/
+
+
+do case
+case getEnv("QUERY_STRING")=="LED=zap"
+//hb_processRun( xProg + ' ' + cParam, , @cStdOut, ,.F. )
+hb_processRun( 'sudo gpio write 25 1', , , ,.F. )
+
+case getEnv("QUERY_STRING")=="LED=vyp"
+hb_processRun( 'sudo gpio write 25 0', , , ,.F. )
+
+case getEnv("QUERY_STRING")=="r1=zap"
+hb_processRun( 'sudo gpio write 21 1', , , ,.F. )
+
+case getEnv("QUERY_STRING")=="r1=vyp"
+hb_processRun( 'sudo gpio write 21 0', , , ,.F. )
+
+case getEnv("QUERY_STRING")=="r2=zap"
+hb_processRun( 'sudo gpio write 22 1', , , ,.F. )
+
+case getEnv("QUERY_STRING")=="r2=vyp"
+hb_processRun( 'sudo gpio write 22 0', , , ,.F. )
+
+case getEnv("QUERY_STRING")=="r3=zap"
+hb_processRun( 'sudo gpio write 23 1', , , ,.F. )
+
+case getEnv("QUERY_STRING")=="r3=vyp"
+hb_processRun( 'sudo gpio write 23 0', , , ,.F. )
+
+case getEnv("QUERY_STRING")=="r4=zap"
+hb_processRun( 'sudo gpio write 24 1', , , ,.F. )
+
+case getEnv("QUERY_STRING")=="r4=vyp"
+hb_processRun( 'sudo gpio write 24 0', , , ,.F. )
+
+
+case getEnv("QUERY_STRING")=="test=1"
+//echo -e "Content-type: text/html\n\n"
+cOut:="Content-type: text/html"+chr(10)+chr(10)+chr(10)
+//echo "<h1>Hello World z CGI skriptu</h1>"
+cOut+="<h1>Hello World z akoze  CGI skriptu</h1>"+chr(10)
+outStd(cOut)
+__run("ls -l /sys/devices/platform/soc/3f200000.gpio/gpio >/tmp/jj2.txt")
+ return nil
+
+otherwise
+endcase
+
+//build body
+cBody+="<html>"
+cBody+='<head>'
+*cBody+='<meta http-equiv="Content-Type" content="text/html; charset=windows-1250" />'
+cBody+='<meta http-equiv="content-type" content="text/html" />'
+cBody+='<meta charset="windows-1250">'
+cBody+='<meta name="keywords" CONTENT="Automatizácia domácnosti">'
+cBody+='<meta name="description" CONTENT="Automatizácia domácnosti s RASBERRYPI3">'
+cBody+='<meta name="author" CONTENT="Jaroslav Janík">'
+cBody+='<meta name="ROBOTS" CONTENT="ALL">'
+cBody+='<title>Spojené štáty Kraèanské</title>' //windows-1250
+cBody+='</head>'
+cBody+='<body>'
+cBody+="<center><h1>Dom Ketynky a Jara</h1></center>"
+cBody+="<br>"
+cBody+="<center>"+tabulka_teplot()+"</center>"+"<br>"
+cBody+="<br>"
+cBody+="<center>"+hb_memoread('tlacitkaLED.txt')+"</center>"+"<br>"
+cBody+="<center>"+hb_memoread('tlacitkaR1.txt')+"</center>"+"<br>"
+cBody+="<center>"+hb_memoread('tlacitkaR2.txt')+"</center>"+"<br>"
+cBody+="<center>"+hb_memoread('tlacitkaR3.txt')+"</center>"+"<br>"
+cBody+="<center>"+hb_memoread('tlacitkaR4.txt')+"</center>"+"<br>"
+cBody+="<br>"
+cBody+="<center>"+"LED: "+readLED()+"</center>"+"<br>"+LF
+cBody+="<center>"+"R1: "+readR1()+"</center>"+"<br>"+LF
+cBody+="<center>"+"R2: "+readR2()+"</center>"+"<br>"+LF
+cBody+="<center>"+"R3: "+readR3()+"</center>"+"<br>"+LF
+cBody+="<center>"+"R4: "+readR4()+"</center>"+"<br>"+LF
+cBody+="<br>"
+//cBody+="<center>"+"whoami: "+readR2()+"</center>"+"<br>"
+cBody+='</body>'
+cBody+="</html>"
+
+//build output
+cOut+=cHeader
+cOut+=cBody
+
+outStd(cOut)
+hb_memowrit("/tmp/jaroCGI.out",cOut)
+! whoami >/tmp/whoami.txt
+return nil
+
+//-----------------------------------------------------------------------------//
+function cgiEnv()
+local lanc:=''
+lanc+=;
+"CONTENT_TYPE	The data type of the content. Used when the client is sending attached content to the server. For example file upload etc."+"<br>";
++getEnv("CONTENT_TYPE")+"<br>";
++"CONTENT_LENGTH	The length of the query information. It's available only for POST requests"+"<br>";
++getEnv("CONTENT_LENGTH")+"<br>";
++"HTTP_COOKIE	Return the set cookies in the form of key & value pair."+"<br>";
++getEnv("HTTP_COOKIE")+"<br>";
++"HTTP_USER_AGENT	The User-Agent request-header field contains information about the user agent originating the request. Its name of the web browser."+"<br>";
++getEnv("HTTP_USER_AGENT")+"<br>";
++"PATH_INFO	The path for the CGI script."+"<br>";
++getEnv("PATH_INFO")+"<br>";
++"QUERY_STRING	The URL-encoded information that is sent with GET method request."+"<br>";
++getEnv("QUERY_STRING")+"<br>";
++"REMOTE_ADDR	The IP address of the remote host making the request. This can be useful for logging or for authentication purpose."+"<br>";
++getEnv("REMOTE_ADDR")+"<br>";
++"REMOTE_HOST	The fully qualified name of the host making the request. If this information is not available then REMOTE_ADDR can be used to get IR address."+"<br>";
++getEnv("REMOTE_HOST")+"<br>";
++"REQUEST_METHOD	The method used to make the request. The most common methods are GET and POST."+"<br>";
++getEnv("REQUEST_METHOD")+"<br>";
++"SCRIPT_FILENAME	The full path to the CGI script."+"<br>";
++getEnv("SCRIPT_FILENAME")+"<br>";
++"SCRIPT_NAME	The name of the CGI script."+"<br>";
++getEnv("SCRIPT_NAME")+"<br>";
++"SERVER_NAME	The server's hostname or IP Address"+"<br>";
++getEnv("SERVER_NAME")+"<br>";
++"SERVER_SOFTWARE	The name and version of the software the server is running."+"<br>";
++getEnv("SERVER_SOFTWARE")+"<br>"
+
+return lanc
+//-----------------------------------------------------------------------------//
+
+//-----------------------------------------------------------------------------//
+function Teplota1()
+local lanc:=hb_memoread("/sys/bus/w1/devices/28-000007268829/w1_slave")
+local aRiadky := HB_ATOKENS( lanc, chr(10) )
+local cTeplota:=''
+local nTeplota:=-999
+
+  if len(aRiadky)>=2
+    if right(aRiadky[1],3) == 'YES'
+    cTeplota := token( aRiadky[2],'=',2)
+    nTeplota := val(cTeplota) / 1000
+    *? transform(nTeplota, "999.999" )
+    endif
+  endif
+return nTeplota
+
+//-----------------------------------------------------------------------------//
+function Teplota2()
+local lanc:=hb_memoread("/sys/bus/w1/devices/28-00000728518f/w1_slave")
+local aRiadky := HB_ATOKENS( lanc, chr(10) )
+local cTeplota:=''
+local nTeplota:=-999
+
+  if len(aRiadky)>=2
+    if right(aRiadky[1],3) == 'YES'
+    cTeplota := token( aRiadky[2],'=',2)
+    nTeplota := val(cTeplota) / 1000
+    *? transform(nTeplota, "999.999" )
+    endif
+  endif
+return nTeplota
+
+//-----------------------------------------------------------------------------//
+function Teplota3()
+local lanc:=hb_memoread("/sys/bus/w1/devices/28-000007266f1e/w1_slave")
+local aRiadky := HB_ATOKENS( lanc, chr(10) )
+local cTeplota:=''
+local nTeplota:=-999
+
+  if len(aRiadky)>=2
+    if right(aRiadky[1],3) == 'YES'
+    cTeplota := token( aRiadky[2],'=',2)
+    nTeplota := val(cTeplota) / 1000
+    *? transform(nTeplota, "999.999" )
+    endif
+  endif
+return nTeplota
+
+//-----------------------------------------------------------------------------//
+function Teplota4()
+local lanc:=hb_memoread("/sys/bus/w1/devices/28-00000726f007/w1_slave")
+local aRiadky := HB_ATOKENS( lanc, chr(10) )
+local cTeplota:=''
+local nTeplota:=-999
+
+  if len(aRiadky)>=2
+    if right(aRiadky[1],3) == 'YES'
+    cTeplota := token( aRiadky[2],'=',2)
+    nTeplota := val(cTeplota) / 1000
+    *? transform(nTeplota, "999.999" )
+    endif
+  endif
+return nTeplota
+
+//-----------------------------------------------------------------------------//
+
+function tabulka_teplot()
+local lanc:=hb_memoread('tabulka_teplot.txt')
+lanc := strtran(lanc, "###001###", transform(Teplota1(), "999.999" ) )
+lanc := strtran(lanc, "###002###", transform(Teplota2(), "999.999" ) )
+lanc := strtran(lanc, "###003###", transform(Teplota3(), "999.999" ) )
+lanc := strtran(lanc, "###004###", transform(Teplota4(), "999.999" ) )
+return lanc
+
+//-----------------------------------------------------------------------------//
+//---------------------------------------------------------------------------//
+
+function readLED() 
+local cStdOut:=''
+//hb_processRun( xProg + ' ' + cParam, , @cStdOut, ,.F. )
+hb_processRun( 'sudo gpio read 25', , @cStdOut, ,.F. )
+return cStdOut
+//---------------------------------------------------------------------------//
+
+function readR1()
+local cStdOut:=''
+//hb_processRun( xProg + ' ' + cParam, , @cStdOut, ,.F. )
+hb_processRun( 'sudo gpio read 21', , @cStdOut, ,.F. )
+return cStdOut
+//---------------------------------------------------------------------------//
+
+function readR2()
+local cStdOut:=''
+//hb_processRun( xProg + ' ' + cParam, , @cStdOut, ,.F. )
+hb_processRun( 'sudo gpio read 22', , @cStdOut, ,.F. )
+return cStdOut
+
+//---------------------------------------------------------------------------//
+function readR3()
+local cStdOut:=''
+//hb_processRun( xProg + ' ' + cParam, , @cStdOut, ,.F. )
+hb_processRun( 'sudo gpio read 23', , @cStdOut, ,.F. )
+return cStdOut
+//---------------------------------------------------------------------------//
+
+function readR4()
+local cStdOut:=''
+//hb_processRun( xProg + ' ' + cParam, , @cStdOut, ,.F. )
+hb_processRun( 'sudo gpio read 24', , @cStdOut, ,.F. )
+return cStdOut
+
+//---------------------------------------------------------------------------//
+
+

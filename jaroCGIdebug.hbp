@@ -1,0 +1,10 @@
+hbct.hbc
+
+-b
+-dTEST
+
+# velmi dolezite !!!!
+-gtcgi
+
+jaroCGI.prg
+

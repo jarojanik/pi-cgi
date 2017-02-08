@@ -1,0 +1,9 @@
+
+<form action="/cgi-bin/jaroCGI?r4=zap">
+    <input type="submit" formmethod="post" value="R4 zapni">
+</form>
+
+<form action="/cgi-bin/jaroCGI?r4=vyp">
+    <input type="submit" formmethod="post" value="R4 vypni">
+</form>
+

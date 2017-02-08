@@ -1,0 +1,12 @@
+
+<form action="/cgi-bin/jaroCGI?r2=zap">
+    <input type="submit" formmethod="post" value="R2 zapni">
+</form>
+
+<form action="/cgi-bin/jaroCGI?r2=vyp">
+    <input type="submit" formmethod="post" value="R2 vypni">
+</form>
+
+<!form action="/cgi-bin/stavR1.pl">
+    <!input type="submit" formmethod="post" value="Rrrrrrrrr">
+<!/form>
