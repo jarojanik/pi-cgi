@@ -148,12 +148,12 @@ cBody+='<meta name="keywords" CONTENT="Automatizácia domácnosti">'
 cBody+='<meta name="description" CONTENT="Automatizácia domácnosti s RASBERRYPI3">'
 cBody+='<meta name="author" CONTENT="Jaroslav Janík">'
 cBody+='<meta name="ROBOTS" CONTENT="ALL">'
-cBody+="<title>Spojené ¿táty Kraèanské</title>"
+cBody+="<title>Spojené štáty Kraèanské</title>"
 cBody+="</head>"
 cBody+="<body>"
 cBody+="<center><h1>Dom Ketynky a Jara</h1></center>"
 cBody+="<br>"
-cBody+="<center>Spojené ¿táty Kraèanské</center>"
+cBody+="<center>Spojené Štáty Kraèanské</center>"
 cBody+="<br>"
 
 
@@ -294,7 +294,7 @@ lanc := strtran(lanc, "###93###", '<div id="demoIO1">'+cLED+"</div>" )
 lanc := strtran(lanc, "###94###", center(tlacitko("OFF","/cgi-bin/jaroCGI?LED=vyp")) )
 
 
-lanc := strtran(lanc, "###99###", "AAA"+cHum+"BBB" )
+lanc := strtran(lanc, "###99###", "J_"+cHum+"_J" )
 
 return lanc
 
